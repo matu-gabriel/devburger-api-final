@@ -68,7 +68,7 @@ class CategoryController {
 
     const { id } = req.params;
 
-    const findProduct = await Product.findByPk(id);
+    const findProduct = await Category.findByPk(id);
 
     if (!findProduct) {
       return res.status(400).json({ error: "Id do produto incorreto" });
