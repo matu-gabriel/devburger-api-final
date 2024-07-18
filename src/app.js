@@ -8,7 +8,7 @@ import cors from "cors";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const corsOprions = {
+const corsOptions = {
   origin: "https://devburger-interface-three.vercel.app",
   credentials: true,
 };
@@ -16,7 +16,7 @@ const corsOprions = {
 class App {
   constructor() {
     this.app = express();
-    this.app.use(cors(corsOprions));
+    this.app.use(cors(corsOptions));
     this.middleware();
     this.routes();
   }
