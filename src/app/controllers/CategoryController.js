@@ -107,6 +107,30 @@ class CategoryController {
 
     return res.status(200).json();
   }
+
+  async delete(req, res) {
+    const { admin: isAdmin } = await User.findByPk(req.userId);
+
+    if (!isAdmin) {
+      return res.status(401).json();
+    }
+
+    const { id } = req.params;
+
+    const findProduct = await Category.findByPk(id);
+
+    if (!findProduct) {
+      return res.status(400).json({ error: "Id da categoria incorreto" });
+    }
+
+    await Category.destroy({
+      where: {
+        id,
+      },
+    });
+
+    return res.status(200).json({ messege: "Categoria excluida com sucesso" });
+  }
 }
 
 export default new CategoryController();
